@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -10,6 +11,17 @@ interface CompetitorAnalysisProps {
 }
 
 const CompetitorAnalysis = ({ g2Link, onReset }: CompetitorAnalysisProps) => {
+  const summaryMetrics = {
+    rating: "3.2/5",
+    ratingTrend: "-0.3 vs previous quarter",
+    negativeReviews: "68%",
+    reviewCount: "96 out of 147 reviews",
+    topPainPoint: "Difficult UI",
+    painPointMentions: "Mentioned in 27 reviews",
+    competitiveGap: "UI/UX Design",
+    opportunityNote: "Your opportunity"
+  };
+
   const weaknesses = [
     { id: 1, title: "High Pricing Structure", description: "Cost concerns for small businesses and scaling" },
     { id: 2, title: "Limited Free Plan", description: "Restricted functionality in trial version" },
@@ -57,47 +69,41 @@ const CompetitorAnalysis = ({ g2Link, onReset }: CompetitorAnalysisProps) => {
           </Button>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <Card className="p-6 bg-white shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex items-center justify-between mb-4">
-              <div className="p-2 rounded-lg bg-orange-100">
-                <FileBarChart className="h-6 w-6 text-orange-600" />
-              </div>
-              <span className="text-sm font-medium text-gray-500">Overview</span>
-            </div>
-            <h3 className="text-2xl font-bold mb-1">4</h3>
-            <p className="text-gray-600">Key Weaknesses Identified</p>
-          </Card>
-
-          <Card className="p-6 bg-white shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex items-center justify-between mb-4">
-              <div className="p-2 rounded-lg bg-purple-100">
-                <ArrowUp className="h-6 w-6 text-purple-600" />
-              </div>
-              <span className="text-sm font-medium text-gray-500">Growth</span>
-            </div>
-            <h3 className="text-2xl font-bold mb-1">4</h3>
-            <p className="text-gray-600">Market Opportunities</p>
-          </Card>
-
-          <Card className="p-6 bg-white shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex items-center justify-between mb-4">
-              <div className="p-2 rounded-lg bg-blue-100">
-                <ChevronRight className="h-6 w-6 text-blue-600" />
-              </div>
-              <span className="text-sm font-medium text-gray-500">Strategy</span>
-            </div>
-            <h3 className="text-2xl font-bold mb-1">3</h3>
-            <p className="text-gray-600">Marketing Angles</p>
-          </Card>
-        </div>
-
-        <Tabs defaultValue="weaknesses" className="space-y-4">
-          <TabsList className="grid w-full grid-cols-3 lg:w-[400px]">
+        <Tabs defaultValue="summary" className="space-y-4">
+          <TabsList className="grid w-full grid-cols-4 lg:w-[600px]">
+            <TabsTrigger value="summary">Summary</TabsTrigger>
             <TabsTrigger value="weaknesses">Weaknesses</TabsTrigger>
             <TabsTrigger value="opportunities">Opportunities</TabsTrigger>
             <TabsTrigger value="marketing">Marketing</TabsTrigger>
           </TabsList>
+
+          <TabsContent value="summary" className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <Card className="p-6 bg-white border-l-4 border-l-red-500">
+                <h3 className="text-lg font-semibold mb-2 text-gray-900">G2 Rating</h3>
+                <p className="text-3xl font-bold mb-1">{summaryMetrics.rating}</p>
+                <p className="text-red-500 text-sm">{summaryMetrics.ratingTrend}</p>
+              </Card>
+
+              <Card className="p-6 bg-white border-l-4 border-l-yellow-500">
+                <h3 className="text-lg font-semibold mb-2 text-gray-900">Negative Reviews</h3>
+                <p className="text-3xl font-bold mb-1">{summaryMetrics.negativeReviews}</p>
+                <p className="text-gray-500 text-sm">{summaryMetrics.reviewCount}</p>
+              </Card>
+
+              <Card className="p-6 bg-white border-l-4 border-l-green-500">
+                <h3 className="text-lg font-semibold mb-2 text-gray-900">Top Pain Point</h3>
+                <p className="text-3xl font-bold mb-1">{summaryMetrics.topPainPoint}</p>
+                <p className="text-gray-500 text-sm">{summaryMetrics.painPointMentions}</p>
+              </Card>
+
+              <Card className="p-6 bg-white border-l-4 border-l-blue-500">
+                <h3 className="text-lg font-semibold mb-2 text-gray-900">Competitive Gap</h3>
+                <p className="text-3xl font-bold mb-1">{summaryMetrics.competitiveGap}</p>
+                <p className="text-gray-500 text-sm">{summaryMetrics.opportunityNote}</p>
+              </Card>
+            </div>
+          </TabsContent>
 
           <TabsContent value="weaknesses" className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
