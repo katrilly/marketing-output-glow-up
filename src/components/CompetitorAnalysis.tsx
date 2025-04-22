@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowUp, ChevronRight, FileBarChart, ExternalLink } from "lucide-react";
+import { ArrowRight, ChevronRight, FileBarChart, ExternalLink, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface CompetitorAnalysisProps {
@@ -20,6 +19,33 @@ const CompetitorAnalysis = ({ g2Link, onReset }: CompetitorAnalysisProps) => {
     painPointMentions: "Mentioned in 27 reviews",
     competitiveGap: "UI/UX Design",
     opportunityNote: "Your opportunity"
+  };
+
+  const keyIssues = [
+    { title: "Difficult UI", description: "Users find navigation confusing and workflows unintuitive" },
+    { title: "Slow Performance", description: "Reports of long loading times and system lag" },
+    { title: "Poor Support", description: "Long response times and unhelpful troubleshooting" }
+  ];
+
+  const negativeReviews = [
+    { title: "Confusing Interface", link: "https://www.g2.com/review1" },
+    { title: "System Too Slow", link: "https://www.g2.com/review2" },
+    { title: "Support Issues", link: "https://www.g2.com/review3" }
+  ];
+
+  const actionPlan = {
+    shortTerm: [
+      "Create comparison landing page highlighting your intuitive UI",
+      "Launch ad campaign targeting 'easy to use' messaging"
+    ],
+    midTerm: [
+      "Develop case studies showing time saved with your solution",
+      "Create webinar highlighting your responsive customer support"
+    ],
+    longTerm: [
+      "Build features that address competitor's gaps in performance",
+      "Create migration guides to make switching easier"
+    ]
   };
 
   const weaknesses = [
@@ -77,7 +103,7 @@ const CompetitorAnalysis = ({ g2Link, onReset }: CompetitorAnalysisProps) => {
             <TabsTrigger value="marketing">Marketing</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="summary" className="space-y-4">
+          <TabsContent value="summary" className="space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <Card className="p-6 bg-white border-l-4 border-l-red-500">
                 <h3 className="text-lg font-semibold mb-2 text-gray-900">G2 Rating</h3>
@@ -103,6 +129,80 @@ const CompetitorAnalysis = ({ g2Link, onReset }: CompetitorAnalysisProps) => {
                 <p className="text-gray-500 text-sm">{summaryMetrics.opportunityNote}</p>
               </Card>
             </div>
+
+            <Card className="p-6 bg-white">
+              <h3 className="text-xl font-semibold mb-4 text-gray-900">Key Issues</h3>
+              <div className="space-y-4">
+                {keyIssues.map((issue, index) => (
+                  <div key={index} className="flex gap-4">
+                    <div className="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
+                      <span className="text-red-600 font-semibold">{index + 1}</span>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900">{issue.title}</h4>
+                      <p className="text-gray-600">{issue.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Card>
+
+            <Card className="p-6 bg-white">
+              <h3 className="text-xl font-semibold mb-4 text-gray-900">Top Negative Reviews</h3>
+              <div className="space-y-2">
+                {negativeReviews.map((review, index) => (
+                  <a
+                    key={index}
+                    href={review.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-[#9b87f5] hover:text-[#7E69AB] hover:underline"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    {review.title}
+                  </a>
+                ))}
+              </div>
+            </Card>
+
+            <Card className="p-6 bg-white">
+              <h3 className="text-xl font-semibold mb-6 text-gray-900">Recommended Action Plan</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                  <h4 className="text-[#9b87f5] font-semibold mb-4">Short-term</h4>
+                  <ul className="space-y-3">
+                    {actionPlan.shortTerm.map((action, index) => (
+                      <li key={index} className="flex gap-2">
+                        <Check className="w-5 h-5 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700">{action}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-[#9b87f5] font-semibold mb-4">Mid-term</h4>
+                  <ul className="space-y-3">
+                    {actionPlan.midTerm.map((action, index) => (
+                      <li key={index} className="flex gap-2">
+                        <Check className="w-5 h-5 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700">{action}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-[#9b87f5] font-semibold mb-4">Long-term</h4>
+                  <ul className="space-y-3">
+                    {actionPlan.longTerm.map((action, index) => (
+                      <li key={index} className="flex gap-2">
+                        <Check className="w-5 h-5 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700">{action}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </Card>
           </TabsContent>
 
           <TabsContent value="weaknesses" className="space-y-4">
