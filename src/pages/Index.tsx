@@ -5,11 +5,10 @@ import CompetitorInput from '@/components/CompetitorInput';
 
 const Index = () => {
   const [analysisData, setAnalysisData] = useState<{
-    competitor: string;
     g2Link: string;
   } | null>(null);
 
-  const handleAnalysisSubmit = (data: { competitor: string; g2Link: string }) => {
+  const handleAnalysisSubmit = (data: { g2Link: string }) => {
     setAnalysisData(data);
   };
 
@@ -23,7 +22,6 @@ const Index = () => {
 
   return (
     <CompetitorAnalysis 
-      competitor={analysisData.competitor}
       g2Link={analysisData.g2Link}
       onReset={handleReset}
     />

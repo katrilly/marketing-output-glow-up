@@ -6,19 +6,17 @@ import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 
 interface CompetitorInputProps {
-  onSubmit: (data: {
-    competitor: string;
-    g2Link: string;
+  onSubmit: (data: { 
+    g2Link: string 
   }) => void;
 }
 
 const CompetitorInput = ({ onSubmit }: CompetitorInputProps) => {
-  const [competitor, setCompetitor] = useState('');
   const [g2Link, setG2Link] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({ competitor, g2Link });
+    onSubmit({ g2Link });
   };
 
   return (
@@ -26,22 +24,11 @@ const CompetitorInput = ({ onSubmit }: CompetitorInputProps) => {
       <div className="max-w-2xl mx-auto">
         <header className="mb-8">
           <h1 className="text-3xl font-bold text-[#1A1F2C] mb-2">Competitor Analysis Tool</h1>
-          <p className="text-gray-600">Enter competitor information to generate insights</p>
+          <p className="text-gray-600">Enter G2 Reviews URL to generate insights</p>
         </header>
 
         <Card className="p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="space-y-2">
-              <Label htmlFor="competitor">Competitor Name</Label>
-              <Input
-                id="competitor"
-                placeholder="Enter competitor name"
-                value={competitor}
-                onChange={(e) => setCompetitor(e.target.value)}
-                required
-              />
-            </div>
-
             <div className="space-y-2">
               <Label htmlFor="g2Link">G2 Reviews URL</Label>
               <Input

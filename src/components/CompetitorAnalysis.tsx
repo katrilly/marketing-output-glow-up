@@ -1,17 +1,15 @@
-
 import React from 'react';
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowUp, ChevronRight, FileBarChart } from "lucide-react";
+import { ArrowUp, ChevronRight, FileBarChart, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface CompetitorAnalysisProps {
-  competitor?: string;
-  g2Link?: string;
+  g2Link: string;
   onReset: () => void;
 }
 
-const CompetitorAnalysis = ({ competitor = "Competitor", g2Link = "#", onReset }: CompetitorAnalysisProps) => {
+const CompetitorAnalysis = ({ g2Link, onReset }: CompetitorAnalysisProps) => {
   const weaknesses = [
     { id: 1, title: "High Pricing Structure", description: "Cost concerns for small businesses and scaling" },
     { id: 2, title: "Limited Free Plan", description: "Restricted functionality in trial version" },
@@ -37,16 +35,16 @@ const CompetitorAnalysis = ({ competitor = "Competitor", g2Link = "#", onReset }
       <div className="max-w-7xl mx-auto">
         <header className="mb-8 flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold text-[#1A1F2C] mb-2">Analysis for {competitor}</h1>
+            <h1 className="text-3xl font-bold text-[#1A1F2C] mb-2">Competitor Insights</h1>
             <p className="text-gray-600 flex items-center gap-2">
-              Based on 
+              Analyzed from 
               <a 
                 href={g2Link} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-[#9b87f5] hover:text-[#7E69AB] underline"
+                className="text-[#9b87f5] hover:text-[#7E69AB] underline flex items-center gap-1"
               >
-                G2 Reviews
+                G2 Reviews <ExternalLink className="w-4 h-4" />
               </a>
             </p>
           </div>
