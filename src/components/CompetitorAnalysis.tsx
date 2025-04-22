@@ -3,8 +3,15 @@ import React from 'react';
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowUp, ChevronRight, FileBarChart } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-const CompetitorAnalysis = () => {
+interface CompetitorAnalysisProps {
+  competitor?: string;
+  g2Link?: string;
+  onReset: () => void;
+}
+
+const CompetitorAnalysis = ({ competitor = "Competitor", g2Link = "#", onReset }: CompetitorAnalysisProps) => {
   const weaknesses = [
     { id: 1, title: "High Pricing Structure", description: "Cost concerns for small businesses and scaling" },
     { id: 2, title: "Limited Free Plan", description: "Restricted functionality in trial version" },
@@ -28,9 +35,28 @@ const CompetitorAnalysis = () => {
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-7xl mx-auto">
-        <header className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Competitor Analysis Dashboard</h1>
-          <p className="text-gray-600">Strategic insights and opportunities based on customer feedback</p>
+        <header className="mb-8 flex justify-between items-center">
+          <div>
+            <h1 className="text-3xl font-bold text-[#1A1F2C] mb-2">Analysis for {competitor}</h1>
+            <p className="text-gray-600 flex items-center gap-2">
+              Based on 
+              <a 
+                href={g2Link} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-[#9b87f5] hover:text-[#7E69AB] underline"
+              >
+                G2 Reviews
+              </a>
+            </p>
+          </div>
+          <Button 
+            onClick={onReset}
+            variant="outline"
+            className="text-[#9b87f5] hover:text-[#7E69AB] border-[#9b87f5] hover:border-[#7E69AB]"
+          >
+            Analyze Another Competitor
+          </Button>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
